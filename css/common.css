@@ -1,0 +1,56 @@
+.logo {
+    width: 200px;
+    height: 65px;
+}
+
+.custom-body-bg {
+    background-color: rgb(229, 229, 229);
+}
+
+.custom-nav {
+    --bs-navbar-hover-color: #f50a01;
+    --bs-navbar-active-color: #f50a01;
+}
+
+.accent-button {
+    --bs-btn-bg: #f50a01;
+    --bs-btn-border-color: #f50a01;
+    font-weight: 600;
+}
+
+.accent-header {
+    /* color: #6e6e73; */
+    color:#000;
+    /* color: #f50a01; */
+}
+
+.accent-subheader {
+    color: #000;
+}
+
+.accent-color {
+    color: #f50a01;
+}
+
+.accent-text {
+    color: #f50a01;
+    font-weight: 600;
+}
+
+.body-accent-text {
+    font-weight: 600;
+}
+
+.accent-border {
+    --bs-border-color: #f50a01;
+}
+
+.general-page-slide {
+    height: 250px;
+}
+
+.slide-img-bg {
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: cover;
+}
