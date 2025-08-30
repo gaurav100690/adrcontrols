@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ADR Controls — Intelligent Systems</title>
+
+  <!-- Bootstrap (kept) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- AOS for scroll animations -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet" />
+
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Montserrat:wght@600;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Inline CSS: red & white modern theme -->
+  <style>
+    :root{
+      --red:#D32F2F;
+      --red-2:#FF5252;
+      --white:#fff;
+      --muted:#6e6e73;
+      --glass: rgba(255,255,255,0.75);
+      --card-shadow: 0 12px 40px rgba(16,24,40,0.08);
+      --soft-shadow: 0 8px 22px rgba(16,24,40,0.06);
+      --radius:16px;
+    }
+    /* Reset & base */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#fff,#fff 40%, #f7f7f9);
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* NAVBAR - sticky translucent */
+    .navbar {
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));
+      box-shadow: 0 6px 20px rgba(16,24,40,0.04);
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+    .nav-brand img.logo{height:48px;border-radius:8px;object-fit:contain}
+    .nav-link{color:#222 !important;font-weight:600;padding:.6rem .75rem}
+    .nav-link:hover{color:var(--red) !important}
+    .nav-link.active{color:var(--red) !important}
+    .navbar-toggler{border: none; outline: none;}
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 74px);
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      border-radius:0;
+      /* angled gradient background */
+      background:
+        linear-gradient(135deg, rgba(211,47,47,0.94) 0%, rgba(255,82,82,0.85) 60%),
+        url('./imgs/slide-2.jpg') center/cover no-repeat;
+      color:#fff;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.08));
+      z-index:0;
+    }
+    .hero-content{position:relative;z-index:1;}
+    .eyebrow{display:inline-block;background:rgba(255,255,255,0.12);padding:.4rem .8rem;border-radius:999px;font-weight:700;color:#fff;margin-bottom:16px}
+    .hero h1{
+      font-family: Montserrat, Inter, sans-serif;
+      font-size: clamp(28px, 4.2vw, 56px);
+      line-height:1.02;
+      margin:0 0 16px 0;
+      font-weight:800;
+      letter-spacing:-0.02em;
+      text-shadow: 0 6px 28px rgba(0,0,0,0.18);
+    }
+    .hero p.lead{
+      font-size: clamp(14px, 1.6vw, 18px);
+      color: rgba(255,255,255,0.92);
+      max-width:760px;
+      margin-bottom:20px;
+    }
+    .hero-cta {display:flex;gap:.75rem;flex-wrap:wrap}
+    .btn-cta{
+      border-radius:999px;padding:.7rem 1.4rem;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,0.12);
+      transition:transform .14s ease, box-shadow .14s ease;
+    }
+    .btn-primary-hero{
+      background:linear-gradient(90deg,var(--white), rgba(255,255,255,0.95));
+      color:var(--red);border:none;
+    }
+    .btn-primary-hero:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,0.18)}
+    .btn-outline-hero{
+      background:transparent;border:2px solid rgba(255,255,255,0.18);color:#fff;
+    }
+    .hero-visual{
+      min-height:240px;border-radius:14px;padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    .typewriter {font-weight:700;color:#fff; font-size:1.02rem; margin-bottom: .6rem; opacity:.95}
+    .hero-cta .ghost{background:transparent;border:1px solid rgba(255,255,255,0.14);color:#fff}
+
+    /* Features / cards */
+    .features {
+      padding: 56px 0;
+    }
+    .feature-card {
+      border-radius:14px;
+      background:linear-gradient(180deg,#fff,#fff);
+      box-shadow:var(--card-shadow);
+      border:1px solid rgba(0,0,0,0.04);
+      padding:20px;
+      transition: transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease;
+    }
+    .feature-card:hover{transform: translateY(-10px); box-shadow: 0 30px 70px rgba(16,24,40,0.08)}
+    .feature-icon {
+      width:64px;height:64px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;
+      background:linear-gradient(180deg, rgba(211,47,47,0.08), rgba(255,82,82,0.04));
+      color:var(--red);font-weight:800;margin-right:12px;
+    }
+    .feature-title{font-weight:800;color:#111;margin-bottom:6px}
+
+    /* Services grid */
+    .services {padding:56px 0;background:transparent}
+    .service {
+      border-radius:14px;padding:18px;border:1px solid rgba(16,24,40,0.04);transition: transform .2s ease, box-shadow .2s ease;
+      background:linear-gradient(180deg,#fff,#fff);
+      box-shadow: var(--soft-shadow);
+    }
+    .service:hover {transform:translateY(-8px); box-shadow: 0 22px 50px rgba(16,24,40,0.06)}
+    .service h5{font-weight:700;color:var(--red)}
+
+    /* Associated Brands - KEEP structure but style */
+    .brands {
+      padding:36px 0;
+      background:linear-gradient(180deg, #fff, #fff);
+      border-top: 1px solid rgba(16,24,40,0.02);
+      border-bottom: 1px solid rgba(16,24,40,0.02);
+    }
+    .brands .brand { width:120px; height:72px; display:flex;align-items:center;justify-content:center;border-radius:10px;border:1px solid rgba(0,0,0,0.06); background:#fff; transition:transform .22s ease, filter .22s ease, box-shadow .22s ease; }
+    .brands .brand:hover{ transform: translateY(-8px) scale(1.04); box-shadow: 0 18px 40px rgba(16,24,40,0.08); border-color: rgba(211,47,47,0.12) }
+    .brands .brand-logo { width:100%; height:100%; background-position:center; background-size:contain; background-repeat:no-repeat; filter:grayscale(1) contrast(.95) opacity(.92); transition: filter .18s ease, transform .18s ease; }
+    .brands .brand:hover .brand-logo { filter:none; transform:scale(1.03) }
+
+    /* Testimonials */
+    .testimonials { padding:56px 0; }
+    .testimonial-card { border-radius:12px; padding:20px; background:#fff; box-shadow:var(--card-shadow); border:1px solid rgba(0,0,0,0.04) }
+    .quote { font-size:1rem; color:#333; font-style:italic }
+
+    /* CTA banner */
+    .cta-banner { margin:40px 0; padding:26px; border-radius:12px; background:linear-gradient(90deg,var(--red),var(--red-2)); color:#fff; box-shadow:0 16px 50px rgba(211,47,47,0.14); }
+    .cta-banner h3{ margin:0; font-weight:800 }
+
+    /* Footer */
+    footer{ padding:36px 0; background:linear-gradient(180deg,#7a0f13,#57090a); color: #fff; }
+    footer a { color: rgba(255,255,255,0.95) }
+    .socials img{ height:30px; filter:brightness(8); opacity:0.95 }
+
+    /* small screens */
+    @media (max-width: 992px){
+      .hero { min-height: 60vh; padding: 48px 0; }
+      .hero h1{ font-size: clamp(26px,6vw,40px) }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="nav-brand" href="#home">
+        <img src="./imgs/logo.jpeg" alt="ADR Controls logo" class="logo">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+        aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navMain">
+        <ul class="navbar-nav align-items-lg-center gap-1">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#brands">Brands</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="container hero-content">
+      <div class="row align-items-center">
+        <div class="col-lg-7" data-aos="fade-up" data-aos-delay="120">
+          <span class="eyebrow">Smart Building • Automation • Energy</span>
+          <h1>Intelligent automation that reduces cost, improves safety and scales with your growth.</h1>
+
+          <div class="typewriter" id="typewriter">Design • Integrate • Maintain — with clarity.</div>
+
+          <p class="lead">
+            ADR Controls partners with global technology brands to deliver building automation, energy management and
+            integrated control solutions. We combine deep domain expertise with rapid, transparent delivery.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#services" class="btn btn-cta btn-cta-lg btn-primary-hero btn-cta" role="button">Explore Services</a>
+            <a href="#contact" class="btn btn-cta btn-outline-hero btn-cta">Get in Touch</a>
+          </div>
+
+          <div class="mt-4 d-flex gap-3" data-aos="fade-up" data-aos-delay="220">
+            <div class="feature-pill d-flex align-items-center gap-2" style="background: rgba(255,255,255,0.06); padding:10px 14px; border-radius:999px;">
+              <img src="./imgs/thumbnail/phone-filled.svg" alt="phone" style="height:20px;filter:brightness(10)" />
+              <div style="font-weight:700">+91-7892788797</div>
+            </div>
+            <div class="feature-pill d-flex align-items-center gap-2" style="background: rgba(255,255,255,0.06); padding:10px 14px; border-radius:999px;">
+              <img src="./imgs/thumbnail/email-@-filled.svg" alt="email" style="height:20px;filter:brightness(10)" />
+              <div style="font-weight:700">info@adrcontrols.com</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero visual / modern card -->
+        <div class="col-lg-5 mt-4 mt-lg-0" data-aos="fade-left" data-aos-delay="180">
+          <div class="hero-visual">
+            <!-- small cards inside visual to show product categories -->
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="p-3 rounded" style="background:rgba(255,255,255,0.05); border-radius:12px;">
+                  <strong style="display:block;color:#fff">Building Automation</strong>
+                  <small style="color:rgba(255,255,255,0.8)">HVAC control, BMS integration</small>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="p-3 rounded" style="background:rgba(255,255,255,0.03);border-radius:12px;">
+                  <strong style="display:block;color:#fff">Energy Management</strong>
+                  <small style="color:rgba(255,255,255,0.8)">Metering, analytics & optimization</small>
+                </div>
+              </div>
+              <div class="col-12 mt-3">
+                <div style="height:120px;border-radius:12px;background:url('./imgs/slide-3.jpg') center/cover no-repeat; box-shadow: inset 0 0 40px rgba(0,0,0,0.18)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </header>
+
+  <!-- ABOUT / WHY -->
+  <section id="about" class="features">
+    <div class="container">
+      <div class="row mb-5 align-items-center">
+        <div class="col-lg-7" data-aos="fade-right">
+          <h2 style="font-weight:800">Why ADR Controls?</h2>
+          <p style="color:var(--muted); max-width:720px">
+            We build resilient automation solutions that integrate across equipment and vendors, lowering operating
+            cost, increasing uptime and reducing energy use. Our engineering-first approach ensures predictable outcomes.
+          </p>
+        </div>
+        <div class="col-lg-5 text-lg-end d-none d-lg-block" data-aos="fade-left">
+          <a class="btn btn-outline-hero" href="#services">See Services</a>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="80">
+          <div class="feature-card d-flex align-items-start gap-3">
+            <div class="feature-icon">AI</div>
+            <div>
+              <div class="feature-title">Smart Design</div>
+              <div style="color:var(--muted)">Modular architecture designed for reliability and scale.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="160">
+          <div class="feature-card d-flex align-items-start gap-3">
+            <div class="feature-icon">⚙️</div>
+            <div>
+              <div class="feature-title">Integration</div>
+              <div style="color:var(--muted)">Seamless vendor-neutral integration across systems.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="240">
+          <div class="feature-card d-flex align-items-start gap-3">
+            <div class="feature-icon">🔒</div>
+            <div>
+              <div class="feature-title">Security & Support</div>
+              <div style="color:var(--muted)">Secure by design and backed up by strong tech support.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="320">
+          <div class="feature-card d-flex align-items-start gap-3">
+            <div class="feature-icon">♻️</div>
+            <div>
+              <div class="feature-title">Sustainability</div>
+              <div style="color:var(--muted)">Energy-first approach to reduce consumption and cost.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-8">
+          <h2 style="font-weight:800" data-aos="fade-up">Our Services</h2>
+          <p style="color:var(--muted)" data-aos="fade-up" data-aos-delay="80">Design, supply, commission and maintain end-to-end automation solutions for buildings & industrial clients.</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="flip-left" data-aos-delay="100">
+          <div class="service p-4">
+            <h5>Building Management Systems</h5>
+            <p style="color:var(--muted)">BMS design, integration and controls for HVAC, lighting and access systems.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3" data-aos="flip-left" data-aos-delay="140">
+          <div class="service p-4">
+            <h5>Energy Management</h5>
+            <p style="color:var(--muted)">Metering, analytics, and optimization to cut energy bills and emissions.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3" data-aos="flip-left" data-aos-delay="180">
+          <div class="service p-4">
+            <h5>Fire & Safety Integration</h5>
+            <p style="color:var(--muted)">Integrated life-safety and alarm systems with centralized monitoring.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3" data-aos="flip-left" data-aos-delay="220">
+          <div class="service p-4">
+            <h5>IoT & Remote Monitoring</h5>
+            <p style="color:var(--muted)">Remote dashboards, predictive alerts and cloud-enabled control.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSOCIATED BRANDS (PRESERVED) -->
+  <section id="brands" class="brands" aria-label="Associated Brands">
+    <div class="container">
+      <h3 class="text-center mb-4" style="color:var(--red); font-weight:800">Associated Brands</h3>
+
+      <!-- First row (forward) -->
+      <div class="slider-container d-flex overflow-hidden align-items-center" data-aos="fade-up" data-aos-delay="80">
+        <div class="d-inline-flex overflow-hidden slider-forward-main">
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b1.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b2.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b3.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b4.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b5.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b6.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b7.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b8.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b9.png)"></div>
+          </div>
+        </div>
+
+        <div class="d-inline-flex overflow-hidden slider-forward-secondary">
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b1.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b2.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b3.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b4.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b5.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b6.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b7.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b8.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b9.png)"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- reverse rows -->
+      <div class="p-1"></div>
+
+      <div class="slider-container d-flex overflow-hidden align-items-center" data-aos="fade-up" data-aos-delay="120">
+        <div class="d-inline-flex overflow-hidden slider-reverse-main">
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b1.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b2.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b3.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b4.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b5.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b6.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b7.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b8.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b9.png)"></div>
+          </div>
+        </div>
+
+        <div class="d-inline-flex overflow-hidden slider-reverse-secondary">
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b1.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b2.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b3.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b4.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b5.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b6.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b7.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b8.png)"></div>
+          </div>
+          <div class="brand ms-3 p-2">
+            <div class="brand-logo" style="background-image: url(./imgs/b9.png)"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="/pages/brands.html" class="btn btn-light" style="border-radius:999px; font-weight:800; color:var(--red);">View All Brands</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col-md-8">
+          <h2 style="font-weight:800" data-aos="fade-up">Trusted by clients across India</h2>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+          <div class="testimonial-card">
+            <div class="quote">"ADR Controls helped us reduce energy bills by 18% within the first year."</div>
+            <div style="margin-top:12px;font-weight:700">— Facilities Head, Retail Chain</div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="140">
+          <div class="testimonial-card">
+            <div class="quote">"Professional delivery and excellent after-sales support."</div>
+            <div style="margin-top:12px;font-weight:700">— MEP Contractor</div>
+          </div>
+        </div>
+
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card">
+            <div class="quote">"Seamless integration across multiple vendors without downtime."</div>
+            <div style="margin-top:12px;font-weight:700">— Building Operations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="container">
+    <div class="cta-banner d-flex align-items-center justify-content-between" data-aos="fade-up">
+      <div>
+        <h3 style="margin:0">Start your automation project with clarity</h3>
+        <div style="opacity:.95">Book a free consultation — conceptual design and feasibility review.</div>
+      </div>
+      <div>
+        <a href="#contact" class="btn btn-light" style="font-weight:800; border-radius:999px; padding:.7rem 1.2rem;">Book Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT & FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-4" data-aos="fade-up">
+          <img src="./imgs/logo.jpeg" alt="ADR Controls" style="height:56px;border-radius:8px;margin-bottom:12px;">
+          <p style="color:rgba(255,255,255,0.9)">ADR Controls and Systems — design, integrate & support building automation and energy management solutions across India.</p>
+        </div>
+
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="80">
+          <h5 style="font-weight:800">Contact</h5>
+          <p style="margin:0">Phone: <a href="tel:+917892788797">+91-7892788797</a></p>
+          <p style="margin:0">Email: <a href="mailto:info@adrcontrols.com">info@adrcontrols.com</a></p>
+        </div>
+
+        <div class="col-md-3" data-aos="fade-up" data-aos-delay="160">
+          <h5 style="font-weight:800">Quick Links</h5>
+          <p style="margin:0"><a href="#services">Services</a></p>
+          <p style="margin:0"><a href="/pages/brands.html">Brands</a></p>
+          <p style="margin:0"><a href="pages/about.html">About Us</a></p>
+        </div>
+
+        <div class="col-md-2 text-md-end" data-aos="fade-up" data-aos-delay="220">
+          <div class="socials d-flex gap-2 justify-content-end">
+            <a href="#"><img src="./imgs/social/linkedin.png" alt="LinkedIn"></a>
+            <a href="#"><img src="./imgs/social/fb.png" alt="Facebook"></a>
+            <a href="#"><img src="./imgs/social/wa.jpg" alt="WhatsApp"></a>
+            <a href="#"><img src="./imgs/social/x.png" alt="X"></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col text-center" style="opacity:.85">© 2025 ADR Controls and Systems. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts: Bootstrap, AOS, plus custom interactive JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <script>
+    // Init AOS
+    document.addEventListener('DOMContentLoaded', ()=> {
+      AOS.init({ duration:700, once:true, easing: 'ease-in-out' });
+      initTypewriter();
+      initBrandAutoScroll();
+      highlightCurrentNavOnScroll();
+    });
+
+    // Smooth scroll for nav links (bootstrap already supports but ensure offset)
+    (function(){
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const href = a.getAttribute('href');
+          if(!href || href.startsWith('http')) return;
+          if(href.startsWith('#')){
+            e.preventDefault();
+            const el = document.querySelector(href);
+            if(el){
+              const top = el.getBoundingClientRect().top + window.scrollY - 72; // offset for navbar
+              window.scrollTo({top, behavior:'smooth'});
+              // collapse navbar on mobile
+              const bsCollapse = document.querySelector('.navbar-collapse');
+              if(bsCollapse && bsCollapse.classList.contains('show')){
+                new bootstrap.Collapse(bsCollapse).hide();
+              }
+            }
+          }
+        });
+      });
+    })();
+
+    // Small function: highlight nav based on scroll
+    function highlightCurrentNavOnScroll(){
+      const sections = [...document.querySelectorAll('section, header')].filter(s=>s.id);
+      const navMap = {};
+      document.querySelectorAll('.nav-link').forEach(a=>{
+        const h = a.getAttribute('href');
+        if(h && h.startsWith('#')) navMap[h.slice(1)] = a;
+      });
+      function onScroll(){
+        let current = sections[0].id;
+        const scrollPos = window.scrollY + 120;
+        for(const sec of sections){
+          if(sec.offsetTop <= scrollPos) current = sec.id;
+        }
+        // set active
+        document.querySelectorAll('.nav-link').forEach(a=>a.classList.remove('active'));
+        if(navMap[current]) navMap[current].classList.add('active');
+      }
+      window.addEventListener('scroll', onScroll, {passive:true});
+      onScroll();
+    }
+
+    // Typewriter for hero small line
+    function initTypewriter(){
+      const el = document.getElementById('typewriter');
+      if(!el) return;
+      const phrases = [
+        "Design • Integrate • Maintain — with clarity.",
+        "Scaleable control. Predictable outcomes.",
+        "Faster commissioning. Better uptime."
+      ];
+      let idx = 0, char = 0;
+      let forward = true;
+      function tick(){
+        const p = phrases[idx];
+        if(forward){
+          char++;
+          el.textContent = p.slice(0,char);
+          if(char>=p.length){ forward=false; setTimeout(tick,1600); return; }
+        } else {
+          char--;
+          el.textContent = p.slice(0,char);
+          if(char<=0){ forward=true; idx=(idx+1)%phrases.length; setTimeout(tick,300); return; }
+        }
+        setTimeout(tick, 42 + Math.random()*30);
+      }
+      tick();
+    }
+
+    // Brands: gentle continuous scroll for each slider region (non-intrusive)
+    function initBrandAutoScroll(){
+      const forwardEls = document.querySelectorAll('.slider-forward-main, .slider-forward-secondary');
+      const reverseEls = document.querySelectorAll('.slider-reverse-main, .slider-reverse-secondary');
+
+      function animate(el, speed){
+        let rafId;
+        let last = performance.now();
+        function frame(now){
+          const dt = (now - last)/1000;
+          last = now;
+          el.scrollLeft += speed * dt;
+          // loop-around trick: when scrolled half way, reset to 0 -> gives continuous feel
+          if(el.scrollLeft >= el.scrollWidth/2) el.scrollLeft = 0;
+          if(el.scrollLeft <= 0) el.scrollLeft = el.scrollWidth/2;
+          rafId = requestAnimationFrame(frame);
+        }
+        rafId = requestAnimationFrame(frame);
+        // pause on hover
+        el.addEventListener('mouseenter', ()=> cancelAnimationFrame(rafId));
+        el.addEventListener('mouseleave', ()=> { last = performance.now(); rafId = requestAnimationFrame(frame); });
+      }
+
+      forwardEls.forEach(el => { try{ animate(el, 32); } catch(e){} });
+      reverseEls.forEach(el => { try{ animate(el, -24); } catch(e){} });
+    }
+
+    // Accessibility: keyboard outlines for focus (soft)
+    (function(){
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Tab'){
+          document.documentElement.classList.add('show-focus');
+        }
+      });
+      document.addEventListener('mousedown', function(){ document.documentElement.classList.remove('show-focus')});
+    })();
+  </script>
+</body>
+</html>

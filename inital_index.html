@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADR Controls - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/highlight.css">
+    <link rel="stylesheet" href="./css/highlight-1.css">
+    <link rel="stylesheet" href="./css/highlight-2.css">
+    <link rel="stylesheet" href="./css/slider.css">
+    <link rel="stylesheet" href="./css/factors.css">
+    <link rel="stylesheet" href="./css/fastest_partner.css">
+    <style>
+        /* Sample body text color from Apple's site: #6e6e73 */
+    </style>
+</head>
+
+<body class="custom-body-bg">
+    <!-- Navigation -->
+    <nav class="navbar custom-nav navbar-expand-lg bg-white sticky-top">
+        <div class="container">
+            <a class="nav-brand" href="index.html">
+                <img class="logo" src="./imgs/logo.jpeg" alt="IntelliPro Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="#navbarContent" aria-expanded="false" aria-label="IntelliPro Menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                <div class="navbar-nav nav-underline">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link" href="pages/about.html">About us</a>
+                    <a class="nav-link" href="pages/brands.html">Brands</a>
+                    <a class="nav-link" href="pages/contact.html">Contact us</a>
+                    <a class="nav-link" href="pages/careers.html">Careers</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Carousel / Highlight -->
+    <div class="container mt-4">
+        <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+            <!-- Bottom Carousel Controls -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="0"
+                    class="active bg-secondary" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="1"
+                    class=" bg-secondary" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="2"
+                    class=" bg-secondary" aria-label="Slide 3"></button>
+            </div>
+            <!-- Slides -->
+            <div class="carousel-inner rounded-3 bg-white">
+                <!-- Slide - 1 -->
+                <div id="highlight-1"
+                    class="carousel-item active custom-highlight container rounded mt-10 highlight-1-container" 
+                    data-bs-interval="5000" 
+                    style="background-image: url(./imgs/slide-2.jpg);">
+                    <div class="row ps-lg-5">
+                        <h4 class="text-center pt-4 pb-3 bg-white" style="color: #D32F2F;">Intelligent Systems. Seamless Control</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col ps-lg-5">
+                            <div class="highlight-1-text-container">
+                                <div class="container ps-xl-5">
+                                    <div class="row ps-xxl-5">
+                                        <div class="d-inline-flex pt-4 ps-xxl-5">
+                                            <span class="x-factor-highlight-thumbnail"
+                                                style="background-image:url(./imgs/xsupport.svg)"></span>
+                                            <span class="align-self-center ps-3">
+                                                <h6>Unique Products</h6>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row ps-xxl-5">
+                                        <div class="d-inline-flex pt-4 ps-xxl-5">
+                                            <span class="x-factor-highlight-thumbnail"
+                                                style="background-image:url(./imgs/xdelivery.svg)"></span>
+                                            <span class="align-self-center ps-3">
+                                                <h6>Customized Solutions</h6>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row ps-xxl-5">
+                                        <div class="d-inline-flex pt-4 ps-xxl-5">
+                                            <span class="x-factor-highlight-thumbnail"
+                                                style="background-image:url(./imgs/xtechnology.jpg)"></span>
+                                            <span class="align-self-center ps-3">
+                                                <h6>Technology Driven Focused</h6>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row ps-xxl-5 pb-5">
+                                        <div class="d-inline-flex pt-4 ps-xxl-5">
+                                            <span class="x-factor-highlight-thumbnail"
+                                                style="background-image:url(./imgs/xproducts.svg)"></span>
+                                            <span class="align-self-center ps-3">
+                                                <h6>Strong Tech Support</h6>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="highlight-2"
+                    class="carousel-item custom-highlight container rounded mt-10 highlight-2-container" 
+                    data-bs-interval="5000" 
+                    style="background-image: url(./imgs/slide-3.jpg);">
+
+                </div>
+                <div id="highlight-3"
+                    class="carousel-item custom-highlight container rounded mt-10 highlight-container" 
+                    data-bs-interval="5000" 
+                    style="background-image: url(./imgs/slide-4.jpg);">
+
+                </div>
+            </div>
+            <!-- Next/Previous Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bg-secondary bg-opacity-25" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon bg-secondary bg-opacity-25" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    <!-- Brand slider -->
+    <div class="container mt-4">
+        <div class="rounded-3 pt-3 pb-3 bg-white">
+            <h3 class="text-center pt-3 pb-3 accent-header"style="color: #D32F2F;">Associated Brands</h3>
+            <div class="slider-container d-flex overflow-hidden align-items-center">
+                <div class="d-inline-flex overflow-hidden slider-forward-main">
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b1.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b2.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b3.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b4.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b5.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b6.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b7.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b8.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b9.png);"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-flex overflow-hidden slider-forward-secondary">
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b1.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b2.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b3.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b4.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b5.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b6.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b7.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b8.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b9.png);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-1"></div>
+            <div class="slider-container d-flex overflow-hidden align-items-center">
+                <div class="d-inline-flex overflow-hidden slider-reverse-main">
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b1.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b2.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b3.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b4.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b5.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b6.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b7.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b8.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b9.png);"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-flex overflow-hidden slider-reverse-secondary">
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b1.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b2.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b3.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b4.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b5.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b6.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b7.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b8.png);"></div>
+                        </div>
+                    </div>
+                    <div class="brand border rounded ms-3 p-2">
+                        <div class="brand-logo-container">
+                            <div class="brand-logo p-2" style="background-image: url(./imgs/b9.png);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center pt-4 pb-4">
+                <a href="/pages/brands.html" type="button" class="btn btn-danger accent-button ps-4 pe-4">View All Brands</a>
+            </div>
+        </div>
+    </div>
+    <!-- X-Factors -->
+    <div class="container mt-4">
+        <div class="rounded-3 pt-3 pb-3 bg-white">
+            <h3 class="text-center accent-header pt-3 pb-4"style="color: #D32F2F;">Why To Work With Us </h3>
+            <div class="container ps-md-5 pe-md-5">
+                <div class="row">
+                    <div class="col-lg pb-4">
+                        <div class="container rounded border h-100">
+                            <div class="row h-100 d-flex align-items-center">
+                                <div class="col-sm-3">
+                                    <img class="img-fluid factor-img" src="./imgs/factor1-no-bg.png">
+                                </div>
+                                <div class="col">
+                                    <h5 class="accent-subheader"style="color: #D32F2F;">Smart. Scalable. Future-Ready.</h5>
+                                    <span>
+                                        We design and deliver next-generation control and automation solutions that adapt to 
+										your evolving needs. Whether it's a smart building, industrial system, 
+										or infrastructure project, our technologies are engineered for long-term performance, integration,
+										and energy efficiency making your investments future-proof
+                                     .
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg pb-4">
+                        <div class="container rounded border h-100">
+                            <div class="row h-100 d-flex align-items-center">
+                                <div class="col-sm-3">
+                                    <img class="img-fluid factor-img" src="./imgs/factor3-no-bg.png">
+                                </div>
+                                <div class="col">
+                                    <h5 class="accent-subheader"style="color: #D32F2F;">Expertise That Delivers Real Impact</h5>
+                                    <span>
+                                        Our leadership and execution teams bring deep domain knowledge from decades of experience across building automation, 
+										fire systems, energy management, and IoT. 
+										We don’t just install systems—we solve problems, streamline operations, 
+										and improve safety and sustainability for our clients
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg pb-4">
+                        <div class="container rounded border h-100">
+                            <div class="row h-100 d-flex align-items-center">
+                                <div class="col-sm-3">
+                                    <img class="img-fluid factor-img" src="./imgs/factor2-no-bg.png">
+                                </div>
+                                <div class="col">
+                                    <h5 class="accent-subheader"style="color: #D32F2F;">Transparent Collaboration, Built on Trust</h5>
+                                    <span>
+                                        At ADR Controls, we believe strong partnerships drive better outcomes. That’s why we work with you—not just for you. From the first conversation to final commissioning, we offer honest communication, clear pricing, and a consultative approach that ensures we’re always aligned with your goals.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg pb-4">
+                        <div class="container rounded border h-100">
+                            <div class="row h-100 d-flex align-items-center">
+                                <div class="col-sm-3">
+                                    <img class="img-fluid factor-img" src="./imgs/factor4-no-bg.png">
+                                </div>
+                                <div class="col">
+                                    <h5 class="accent-subheader"style="color: #D32F2F;">Complete Solutions Under One Roof.</h5>
+                                    <span>
+                                        We are your single-source partner for design, engineering, supply, installation, integration, and service. With robust vendor relationships and cross-functional capabilities, we ensure that every solution is compliant, optimized, and delivered with quality and accountability at every step.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fasted Growing Distribution Partner -->
+    <div class="container mt-4">
+        <div class="rounded-3 bg-white">
+            <div class="container rounded-3 fastest-partner-container custom-highlight"
+                style="background-image:url(./imgs/h1-bg.png)">
+                <div class="row h-100">
+                    <div class="col-md text-center d-inline-flex ps-md-5">
+                        <span class="h1 align-self-center ps-md-5">India's Most Trusted Technology
+                            Partner</span>
+                    </div>
+                    <div class="col-md text-center d-inline-flex pe-sm-5">
+                        <div class="container align-self-md-center">
+                            <div class="row">
+                                <div class="d-inline-flex justify-content-around">
+                                    <span class="h4 pe-3">20+</span>
+                                    <span class="h4 text-start">Premium Brands&nbsp;&nbsp;</span>
+                                </div>
+                            </div>
+                            <div class="row pt-lg-5 pt-4">
+                                <div class="d-inline-flex justify-content-around">
+                                    <span class="h4 pe-3">50+</span>
+                                    <span class="h4 text-start">Solution Products</span>
+                                </div>
+                            </div>
+                            <div class="row pt-lg-5 pt-4">
+                                <div class="d-inline-flex justify-content-around">
+                                    <span class="h4 pe-3">100+</span>
+                                    <span
+                                        class="h4 text-start">Pincodes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                            </div>
+                            <div class="row pt-lg-5 pt-4">
+                                <div class="d-inline-flex justify-content-around">
+                                    <span class="h4 pe-3">1000+</span>
+                                    <span class="h4 text-start">Channel Partner&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Social Connect -->
+    <div class="container mt-4">
+        <div class="rounded-3 pt-3 pb-3 bg-white">
+            <!-- <h3 class="text-center accent-header pt-2 pb-2">Stay Connected</h3> -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 border-end ps-lg-5 d-flex align-items-center justify-content-around">
+                        <a href="#">
+                            <img class="img-fluid" src="./imgs/social/linkedin.png" alt="LinkedIn">
+                        </a>
+                        <a href="#">
+                            <img class="img-fluid" src="./imgs/social/fb.png" alt="Facebook">
+                        </a>
+                        <a href="#">
+                            <img class="img-fluid" src="./imgs/social/wa.jpg" alt="WhatsApp">
+                        </a>
+                        <a href="#">
+                            <img class="img-fluid" src="./imgs/social/telegram.png" alt="Telegram">
+                        </a>
+                        <a href="#">
+                            <img class="img-fluid" src="./imgs/social/x.png" alt="X">
+                        </a>
+                    </div>
+                    <div
+                        class="col-lg-4 border-end d-flex align-items-center justify-content-center pt-xl-0 pt-lg-0 pt-md-3 pt-sm-3 pt-3">
+                        <a class="accent-text link-offset-2" href="tel:+91-9637094449" title="Phone">
+                            <img class="img-fluid pe-1" src="./imgs/thumbnail/phone-filled.svg" alt="Phone">
+                            <span>+91-7892788797</span>
+                        </a>
+                    </div>
+                    <div
+                        class="col-lg-4 d-flex align-items-center justify-content-center pt-xl-0 pt-lg-0 pt-md-3 pt-sm-3 pt-3">
+                        <a class="accent-text link-offset-2" href="mailto:info@adrcontrols.com" title="Sales Email">
+                            <img class="img-fluid pe-1" src="./imgs/thumbnail/email-@-filled.svg" alt="Sales Email">
+                            <span>info@adrcontrols.com</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <span>&copy; 2025 ADR Controls and Systems. All rights reserved.</span>
+            </div>
+            <div class="col-md-2 d-flex justify-content-md-end">
+                <span class="">Made in India <span title="India" class=""></span></span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-1" style="height:10px"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
