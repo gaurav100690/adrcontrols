@@ -432,214 +432,133 @@
     </div>
   </nav>
 
-<!-- HERO SECTION -->
-<header id="home" class="hero position-relative text-white d-flex align-items-center"
-        style="background:linear-gradient(135deg, rgba(198,40,40,0.85), rgba(0,0,0,0.85)); 
-               min-height:100vh; overflow:hidden;">
+  <!-- HERO SECTION -->
+<header id="home" class="hero d-flex align-items-center justify-content-center text-center"
+        style="background:#000; min-height:100vh; overflow:hidden;">
 
-  <!-- Animated Particles -->
-  <canvas id="particles" class="position-absolute top-0 start-0 w-100 h-100"></canvas>
+  <!-- Canvas for Particle Text -->
+  <canvas id="particle-text"></canvas>
 
-  <div class="container position-relative" style="z-index:2;">
-    <div class="row align-items-center">
-
-      <!-- LEFT CONTENT -->
-      <div class="col-lg-7" data-aos="fade-right" data-aos-duration="900">
-
-        <!-- Tagline -->
-        <span class="eyebrow d-inline-block mb-3 px-3 py-1 rounded-pill fw-semibold" 
-              style="background:#fff; color:#c62828; font-size:0.9rem;">
-          Intelligent Systems • Seamless Control
-        </span>
-
-        <!-- Headline with Scramble Effect -->
-        <h1 class="fw-bold display-4 mb-3 hero-title" style="line-height:1.2;">
-          <span class="scramble-text" data-text="Intelligent Automation."></span><br>
-          <span class="scramble-text highlight" data-text="Reliable Outcomes."></span><br>
-          <span class="scramble-text" data-text="Scalable Delivery."></span>
-        </h1>
-
-        <!-- Subtitle -->
-        <p class="lead mb-4 text-light opacity-90">
-          ADR Controls designs and delivers building automation, energy management, and 
-          integration solutions — combining vendor-grade products with local engineering 
-          and strong technical support.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="d-flex gap-3 mb-5">
-          <a href="#services" class="btn btn-lg px-4 shadow-lg btn-danger rounded-pill fw-semibold">
-            <i class="bi bi-gear-fill me-2"></i> Explore Services
-          </a>
-          <a href="#contact" class="btn btn-lg px-4 shadow-lg btn-outline-light rounded-pill fw-semibold">
-            <i class="bi bi-envelope-open me-2"></i> Get a Free Quote
-          </a>
-        </div>
-
-        <!-- Quick Highlights -->
-        <div class="row g-3 text-center">
-          <div class="col-4" data-aos="zoom-in" data-aos-delay="150">
-            <div class="p-3 rounded shadow-sm bg-white text-dark h-100">
-              <i class="bi bi-award-fill fs-2 text-danger"></i>
-              <h6 class="mt-2 fw-bold">20+ Brands</h6>
-            </div>
-          </div>
-          <div class="col-4" data-aos="zoom-in" data-aos-delay="250">
-            <div class="p-3 rounded shadow-sm bg-white text-dark h-100">
-              <i class="bi bi-people-fill fs-2 text-danger"></i>
-              <h6 class="mt-2 fw-bold">1000+ Partners</h6>
-            </div>
-          </div>
-          <div class="col-4" data-aos="zoom-in" data-aos-delay="350">
-            <div class="p-3 rounded shadow-sm bg-white text-dark h-100">
-              <i class="bi bi-lightning-charge-fill fs-2 text-danger"></i>
-              <h6 class="mt-2 fw-bold">Fast Delivery</h6>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Statement Box -->
-    <div class="hero-description mt-5 p-4 rounded-4 shadow-lg" 
-         style="background:rgba(255,255,255,0.08); border-left:6px solid #c62828; max-width:85%;">
-      <h4 class="fw-bold">ADR Controls – Your Partner in Automation</h4>
-      <p class="mt-2 opacity-90">
-        We deliver integrated, multi-vendor solutions in building automation, fire safety, surveillance, and IoT infrastructure. 
-        Backed by trusted brands and certified engineering, we ensure flawless project execution.
-      </p>
-      <p class="opacity-90">
-        From design assistance and training to lifecycle support, ADR Controls empowers system integrators, consultants, and end-users 
-        with complete enablement and trusted partnership.
-      </p>
-    </div>
+  <!-- Center Content -->
+  <div class="position-absolute top-50 start-50 translate-middle text-center text-white">
+    <!-- Company Tagline -->
+    <h2 class="tagline fw-bold mb-3">
+      ADR Controls
+    </h2>
+    <p class="subtag fw-semibold">
+      Intelligent Systems • Seamless Control
+    </p>
   </div>
 </header>
 
 <!-- Styles -->
 <style>
-  .hero-title .highlight { color:#ff5252; }
+body, html {
+  margin:0; padding:0; height:100%; width:100%;
+  font-family: "Montserrat", sans-serif;
+}
 
-  /* Scramble effect styling */
-  .scramble-text {
-    display:inline-block;
-    color:#fff;
-  }
-  .scramble-text .dud {
-    color:#ff5252;
-    opacity:0.7;
+.hero {
+  background:#000;  /* ✅ black only for hero */
+}
+
+  /* Tagline Styling */
+  .tagline {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #ff5252, #ffffff, #ff5252);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(255,82,82,0.5);
   }
 
-  /* Particle background */
-  #particles { pointer-events:none; }
+  .subtag {
+    font-size: 1.3rem;
+    color: #ddd;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+  }
+
+  @keyframes shine {
+    to {
+      background-position: 200% center;
+    }
+  }
 </style>
 
-<!-- Scramble Effect Script -->
+<!-- Particle Text Script -->
 <script>
-class TextScramble {
-  constructor(el) {
-    this.el = el;
-    this.chars = "!<>-_\\/[]{}—=+*^?#________";
-    this.update = this.update.bind(this);
-  }
-  setText(newText) {
-    const oldText = this.el.innerText;
-    const length = Math.max(oldText.length, newText.length);
-    const promise = new Promise((resolve) => this.resolve = resolve);
-    this.queue = [];
-    for (let i = 0; i < length; i++) {
-      const from = oldText[i] || "";
-      const to = newText[i] || "";
-      const start = Math.floor(Math.random() * 40);
-      const end = start + Math.floor(Math.random() * 40);
-      this.queue.push({ from, to, start, end });
-    }
-    cancelAnimationFrame(this.frameRequest);
-    this.frame = 0;
-    this.update();
-    return promise;
-  }
-  update() {
-    let output = "";
-    let complete = 0;
-    for (let i = 0, n = this.queue.length; i < n; i++) {
-      let { from, to, start, end, char } = this.queue[i];
-      if (this.frame >= end) {
-        complete++;
-        output += to;
-      } else if (this.frame >= start) {
-        if (!char || Math.random() < 0.28) {
-          char = this.randomChar();
-          this.queue[i].char = char;
-        }
-        output += `<span class="dud">${char}</span>`;
-      } else {
-        output += from;
+const canvas = document.getElementById("particle-text");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+const text = ["Intelligent Automation.", "Reliable Outcomes.", "Scalable Delivery."];
+let textIndex = 0;
+let density = 4; // pixel gap
+let particleSize = 2;
+
+function drawText(msg) {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = "white";
+  ctx.font = "bold 70px Montserrat, sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(msg, canvas.width/2, canvas.height/2 - 100);
+
+  const imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles = [];
+
+  for(let y=0; y<imageData.height; y+=density){
+    for(let x=0; x<imageData.width; x+=density){
+      const index = (y*imageData.width + x)*4;
+      if(imageData.data[index+3] > 128){
+        particles.push({x: Math.random()*canvas.width,
+                        y: Math.random()*canvas.height,
+                        targetX: x,
+                        targetY: y,
+                        vx:0, vy:0});
       }
     }
-    this.el.innerHTML = output;
-    if (complete === this.queue.length) {
-      this.resolve();
-    } else {
-      this.frameRequest = requestAnimationFrame(this.update);
-      this.frame++;
-    }
-  }
-  randomChar() {
-    return this.chars[Math.floor(Math.random() * this.chars.length)];
   }
 }
 
-// Apply scramble effect on load
-document.addEventListener("DOMContentLoaded", () => {
-  const elements = document.querySelectorAll(".scramble-text");
-  elements.forEach((el, i) => {
-    const fx = new TextScramble(el);
-    const text = el.getAttribute("data-text");
-    setTimeout(() => fx.setText(text), i * 1500);
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.vx += (p.targetX - p.x)*0.02;
+    p.vy += (p.targetY - p.y)*0.02;
+    p.vx *= 0.92; p.vy *= 0.92;
+    p.x += p.vx; p.y += p.vy;
+    ctx.fillStyle="rgba(255,82,82,0.8)";
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, particleSize, 0, Math.PI*2);
+    ctx.fill();
   });
+  requestAnimationFrame(animate);
+}
+
+drawText(text[textIndex]);
+animate();
+
+// cycle through words
+setInterval(()=>{
+  textIndex = (textIndex+1)%text.length;
+  drawText(text[textIndex]);
+}, 4000);
+
+window.addEventListener("resize", ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  drawText(text[textIndex]);
 });
 </script>
 
-<!-- Script for Particle Animation -->
-<script>
-  const canvas = document.getElementById("particles");
-  const ctx = canvas.getContext("2d");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  let particles = [];
 
-  for (let i = 0; i < 90; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 2 + 1,
-      dx: (Math.random() - 0.5) * 2,
-      dy: (Math.random() - 0.5) * 2
-    });
-  }
-
-  function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(255,82,82,0.7)";
-      ctx.fill();
-      p.x += p.dx; p.y += p.dy;
-      if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-    });
-    requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
-
-  window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
-</script>
 
 
 <section id="brands" class="brands" aria-label="Associated Brands" style="width:100%">
@@ -1261,11 +1180,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   <script>
 
-// function scrollBrands(direction) {
-//   const container = document.querySelector('#brands-bosch .scroll-container');
-//   const scrollAmount = 320; // pixels per click (should match .feature-box width + gap)
-//   container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
-// }
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1329,35 +1243,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// // Counters
-//     function initCounters(){
-//       const counters = document.querySelectorAll('.counter');
-//       if(!counters.length) return;
-//       const io = new IntersectionObserver((entries, obs) => {
-//         entries.forEach(entry => {
-//           if(entry.isIntersecting){
-//             const el = entry.target;
-//             const target = +el.getAttribute('data-target') || 0;
-//             animateCount(el, target, 1200);
-//             obs.unobserve(el);
-//           }
-//         });
-//       }, { threshold: 0.45 });
-//       counters.forEach(c => io.observe(c));
-//     }
-//     function animateCount(el, to, duration){
-//       const start = 0;
-//       const startTime = performance.now();
-//       function step(now){
-//         const elapsed = now - startTime;
-//         const progress = Math.min(elapsed / duration, 1);
-//         const value = Math.floor(progress * to);
-//         el.textContent = (to >= 1000 ? (value + (progress === 1 ? '+' : '')) : value);
-//         if(progress < 1) requestAnimationFrame(step);
-//         else el.textContent = (to >= 1000 ? to + '+' : to);
-//       }
-//       requestAnimationFrame(step);
-//     }
+
 
     // Brand auto scroll (gentle)
     function initBrandAutoScroll(){
