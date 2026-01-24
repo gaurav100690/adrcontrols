@@ -16,6 +16,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
   <!-- Inline styles (red & white theme, modern visuals) -->
   <link rel="stylesheet" href="./css/brands.css">
 
@@ -140,17 +143,21 @@
     .brand:hover .brand-logo .brand-logo-color{ filter:none; transform:scale(1.02); }
 
 .slider-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
   overflow: hidden;
   position: relative;
   width: 100%;
   margin: 20px 0;
 }
 
-.slider-container {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  overflow: visible;  /* ✅ allow hover to show fully */
+@media (max-width: 768px) {
+  .slider-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 .slider-track {
@@ -556,10 +563,9 @@ window.addEventListener("resize", ()=>{
 
 
 
-<section id="brands" class="brands" aria-label="Associated Brands" style="width:100%">
+<section id="brands-carousel" class="brands" aria-label="Associated Brands" style="width:100%">
   <div class="container text-center">
     <h2 class="section-title mb-5">Associated Brands</h2>
-      </h3>
 
       <div class="slider-container">
         <div class="slider-track scroll-left">
@@ -805,10 +811,7 @@ window.addEventListener("resize", ()=>{
   </div>
 </section>
 
-<!-- Font Awesome (if not included globally) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<style>
   .service-card {
     background: #fff;
     transition: all 0.3s ease;
@@ -830,11 +833,10 @@ window.addEventListener("resize", ()=>{
 
 
 <!-- Brands Section -->
-<section id="brands" class="brands" aria-label="Associated Brands" style="width:100%">
+<section id="distribution-partners" class="brands" aria-label="Distribution Partners" style="width:100%">
   <div class="container mt-4">
     <div class="container text-center">
     <h2 class="section-title mb-5">Our Distribution Partners</h2>
-      </h3>
     </div>
 
     <div id="brands-multiple" class="container mt-4">
@@ -1138,11 +1140,11 @@ window.addEventListener("resize", ()=>{
             </div>
 
             <div class="col-lg-4 d-flex align-items-center justify-content-end social-icons">
-              <a href="#" aria-label="LinkedIn"><img src="./imgs/social/linkedin.png" alt="LinkedIn"></a>
-              <a href="#" aria-label="Facebook" class="ms-3"><img src="./imgs/social/fb.png" alt="Facebook"></a>
-              <a href="#" aria-label="WhatsApp" class="ms-3"><img src="./imgs/social/wa.jpg" alt="WhatsApp"></a>
-              <a href="#" aria-label="Telegram" class="ms-3"><img src="./imgs/social/telegram.png" alt="Telegram"></a>
-              <a href="#" aria-label="X" class="ms-3"><img src="./imgs/social/x.png" alt="X"></a>
+              <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><img src="./imgs/social/linkedin.png" alt="LinkedIn"></a>
+              <a href="https://facebook.com" target="_blank" aria-label="Facebook" class="ms-3"><img src="./imgs/social/fb.png" alt="Facebook"></a>
+              <a href="https://whatsapp.com" target="_blank" aria-label="WhatsApp" class="ms-3"><img src="./imgs/social/wa.jpg" alt="WhatsApp"></a>
+              <a href="https://telegram.org" target="_blank" aria-label="Telegram" class="ms-3"><img src="./imgs/social/telegram.png" alt="Telegram"></a>
+              <a href="https://x.com" target="_blank" aria-label="X" class="ms-3"><img src="./imgs/social/x.png" alt="X"></a>
             </div>
           </div>
         </div>
